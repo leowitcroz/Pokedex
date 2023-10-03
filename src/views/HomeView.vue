@@ -3,8 +3,10 @@
     <div class="row">
       <div class="col-lg-2 sidebar">
         <div class="link-box" style="margin-top: 15%; margin-left: 2%;">
+          <router-link to="/pokedex" style="text-decoration: none; color: inherit;">
+            <div class="links">Sua Pokedex</div>
+          </router-link>
           <p class="links">Adicionar Pokemon</p>
-          <p class="links">Sua Pokedex</p>
           <p class="links">Lista de pokemons</p>
         </div>
       </div>
@@ -18,9 +20,9 @@
 
         <input type="text" v-model="pokeName" placeholder="Ex: Charmander" style="width: 30%; padding: 0.5%; margin-top: 3% ;border-radius: 10px; border:1px solid black ;outline: 0; ">
 
-        <button class="add_btn" @click="searchPokemon(pokeName);" style="">Clique Aqui</button>
+        <button class="add_btn" @click="addPokemon(pokeName);" style="">Clique Aqui</button>
 
-        <h1>{{ pokeChosen }}</h1>
+        <h1 v-if="showText" style="margin-top: 5%;align-items: center; margin-left: 3%;">{{ pokeChosen }} foi adicionado a sua pokedex</h1>
       </div>
     </div>
   </div>
@@ -28,20 +30,23 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
+import { pokeChosen } from '../store/store'
+
 
 
 let pokemon: string | any[] = []
 
 let pokeName = ref()
 
-let pokeChosen = ref()
+let showText = ref(false)
 
-let searchPokemon = (name: string) => {
+let addPokemon = (name: string) => {
   console.log(pokemon)
   for (let i = 0; i < pokemon.length; i++) {
     if (pokemon[i].name == name) {
       console.log(pokemon[i])
-      pokeChosen.value = pokemon[i].name
+      pokeChosen.value = pokemon[i].name[0].toUpperCase() + pokemon[i].name.substring(1)
+      showText.value = true
     }
   }
   return null
