@@ -9,12 +9,16 @@
         </div>
       </div>
 
-      <div class="col-lg-10" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-        <h1>POKEDEX</h1>
+      <div class="col-lg-10" style="display: flex; flex-direction: column; align-items: center; background-color: rgb(247, 237, 225);">
+        <div class="logo_pokemon" style="display: flex;justify-content: center;align-items: center;">
+          <img src="../assets/pokemon-removebg-preview.png" alt="" style="width: 70%;">
+        </div>
 
-        <input type="text" v-model="pokeName">
+        <h1 class="title_poke">Adicione Um Pokemon</h1>
 
-        <button @click="searchPokemon(pokeName);">Click</button>
+        <input type="text" v-model="pokeName" placeholder="Ex: Charmander" style="width: 30%; padding: 0.5%; margin-top: 3% ;border-radius: 10px; border:1px solid black ;outline: 0; ">
+
+        <button class="add_btn" @click="searchPokemon(pokeName);" style="">Clique Aqui</button>
 
         <h1>{{ pokeChosen }}</h1>
       </div>
@@ -78,5 +82,25 @@ onMounted(() => {
   color: red;
   cursor: pointer;
   text-decoration: underline;
+}
+
+.title_poke{
+  font-family: 'Pixelify Sans', cursive;
+  color: green;
+}
+
+.add_btn{
+  padding: 0.7%; 
+  margin-top: 3%;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: red;
+  color: white;
+  outline: 0;
+}
+
+.add_btn:hover{
+  text-decoration: underline;
+  
 }
 </style>
