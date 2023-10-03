@@ -1,4 +1,4 @@
-<template>
+<template >
   <nav>
     <router-link to="/"></router-link> 
   </nav>

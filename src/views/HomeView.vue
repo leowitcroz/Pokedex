@@ -23,6 +23,7 @@
         <button class="add_btn" @click="addPokemon(pokeName);" style="">Clique Aqui</button>
 
         <h1 v-if="showText" style="margin-top: 5%;align-items: center; margin-left: 3%;">{{ pokeChosen }} foi adicionado a sua pokedex</h1>
+        <h1 v-if="showFullText" style="margin-top: 5%;align-items: center; margin-left: 3%;">Sua Pokedex Esta Cheia</h1>
       </div>
     </div>
   </div>
@@ -30,9 +31,17 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
-import { pokeChosen } from '../store/store'
+import { pokeChosen,pokeList } from '../store/store'
 
-
+function sleep(milliseconds: number) {
+    let timeStart = new Date().getTime();
+    while (true) {
+      let elapsedTime = new Date().getTime() - timeStart;
+      if (elapsedTime > milliseconds) {
+        break;
+      }
+    }
+  }
 
 let pokemon: string | any[] = []
 
@@ -40,20 +49,26 @@ let pokeName = ref()
 
 let showText = ref(false)
 
-let addPokemon = (name: string) => {
-  console.log(pokemon)
+let showFullText = ref(false)
+
+let addPokemon =  (name: string) => {
   for (let i = 0; i < pokemon.length; i++) {
-    if (pokemon[i].name == name) {
-      console.log(pokemon[i])
+    if (pokemon[i].name == name.toLowerCase()) {
       pokeChosen.value = pokemon[i].name[0].toUpperCase() + pokemon[i].name.substring(1)
-      showText.value = true
+        if(pokeList.value.length <= 19){
+          pokeList.value.push(pokeChosen.value)
+          showText.value = true
+          setTimeout(()=>{showText.value = false;}, 3000)
+        }else{
+          showFullText.value = true
+        }
     }
   }
   return null
 }
 
 onMounted(() => {
-  fetch('https://pokeapi.co/api/v2/pokemon?limit=1292').then(res => res.json()).then(res => { pokemon = res.results; console.log(pokemon) })
+  fetch('https://pokeapi.co/api/v2/pokemon?limit=1292').then(res => res.json()).then(res => { pokemon = res.results; })
 })
 
 
