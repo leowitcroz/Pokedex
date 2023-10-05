@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid" style="display: flex;" >
       <div class="row">
-        <div class="col-lg-2 sidebar">
+        <div class="col-lg-2 sidebar" >
           <div class="link-box" style="margin-top: 15%; margin-left: 2%;">
             <router-link to="/pokedex" style="text-decoration: none; color: inherit;">
               <p class="links">Sua Pokedex</p>
@@ -18,7 +18,7 @@
         <ul class="item-list" v-if="!loading && pokemon.length > 0">
           <li class="list_itens" v-for="poke in pokemon" :key="poke.name">{{ poke.name }}</li>
         </ul>
-        <div v-else-if="loading">Loading...</div>
+        <div v-else-if="loading" >Loading...</div>
         <div v-else>No data available.</div>
       </div>
     </div>
@@ -50,7 +50,7 @@
   </script>
   
   
-  <style>
+  <style scoped>
     @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
   
   * {
@@ -61,7 +61,6 @@
   }
   
   .sidebar{
-    height: 100vh;
     background-color:rgb(80, 179, 249) ;
   }
   

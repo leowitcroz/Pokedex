@@ -8,8 +8,8 @@
           </router-link>
           <router-link to="/" style="text-decoration: none; color: inherit;">
               <p class="links">Adicionar Pokemon</p>
-          </router-link>
-        <router-link to="/pokelist">
+          </router-link >
+        <router-link to="/pokelist" style="text-decoration: none; color: inherit;">
           <p class="links">Lista de pokemons</p>
         </router-link>
         </div>
@@ -36,7 +36,7 @@ import { pokeList } from '@/store/store';
 </script>
 
 
-<style>
+<style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 
 * {

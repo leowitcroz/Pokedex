@@ -79,7 +79,7 @@ onMounted(() => {
 </script>
 
 
-<style>
+<style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 
 * {
