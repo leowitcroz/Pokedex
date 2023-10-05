@@ -9,7 +9,9 @@
           <router-link to="/" style="text-decoration: none; color: inherit;">
               <p class="links">Adicionar Pokemon</p>
           </router-link>
+        <router-link to="/pokelist">
           <p class="links">Lista de pokemons</p>
+        </router-link>
         </div>
       </div>
 

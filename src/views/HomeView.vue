@@ -6,8 +6,12 @@
           <router-link to="/pokedex" style="text-decoration: none; color: inherit;">
             <div class="links">Sua Pokedex</div>
           </router-link>
-          <p class="links">Adicionar Pokemon</p>
+          <router-link to="/" style="text-decoration: none; color: inherit;">
+              <p class="links">Adicionar Pokemon</p>
+          </router-link>
+          <router-link to="/pokelist" style="text-decoration: none; color: inherit;">
           <p class="links">Lista de pokemons</p>
+        </router-link>
         </div>
       </div>
 
