@@ -14,9 +14,9 @@
         </div>
         
         <div class="col-lg-10" style="background-color: rgb(247, 237, 225);">
-      <div class="poke_list" style="margin-top: 3%; margin-left: 3%;">
+      <div class="poke_list" style="margin-top: 3%; margin-left: 3%; ">
         <ul class="item-list" v-if="!loading && pokemon.length > 0">
-          <li class="list_itens" v-for="poke in pokemon" :key="poke.name">{{ poke.name }}</li>
+          <li class="list_itens" v-for="poke in pokemon" :key="poke.name"><div style="width: 120px;">{{ poke.name }}</div> <div class="btn_poke" @click="console.log('click')" :disabled="button_on">+</div></li>
         </ul>
         <div v-else-if="loading" >Loading...</div>
         <div v-else>No data available.</div>
@@ -35,6 +35,8 @@
   
   let pokemon = ref<any>([]); // Use ref() para tornar a variável "pokemon" reativa.
   let loading = ref(true);
+
+  const button_on = (true);
   
   onMounted(async () => {
     try {
@@ -59,6 +61,18 @@
     box-sizing: border-box;
     /* Isso garante que o tamanho total de um elemento inclua a borda e o preenchimento, não apenas o conteúdo */
   }
+
+  .btn_poke{
+    width: 30px;
+    margin-left: 8%;
+    background-color: white;
+    text-align: center;
+    border-radius: 5px;
+  }
+
+  .btn_poke:hover{
+    cursor: pointer;
+  }
   
   .sidebar{
     background-color:rgb(80, 179, 249) ;
@@ -73,6 +87,7 @@
   }
   
   .list_itens{
+    display: flex;
     font-family: 'Pixelify Sans', cursive;
     font-size: 20px !important;
     color: green;
