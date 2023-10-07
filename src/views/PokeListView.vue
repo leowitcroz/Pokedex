@@ -16,7 +16,7 @@
         <div class="col-lg-10" style="background-color: rgb(247, 237, 225);">
       <div class="poke_list" style="margin-top: 3%; margin-left: 3%; ">
         <ul class="item-list" v-if="!loading && pokemon.length > 0">
-          <li class="list_itens" v-for="poke in pokemon" :key="poke.name"><div style="width: 120px;">{{ poke.name }}</div> <div class="btn_poke" @click="console.log('click')" :disabled="button_on">+</div></li>
+          <li class="list_itens" v-for="poke in pokemon" :key="poke.name"><div style="width: 120px;">{{ capitalizeFirstLetter(poke.name) }}</div> <div :class="nameInList(capitalizeFirstLetter(poke.name)) ? 'btn_poke' : 'btn_poke_off'" @click="console.log('click')">+</div></li>
         </ul>
         <div v-else-if="loading" >Loading...</div>
         <div v-else>No data available.</div>
@@ -26,8 +26,6 @@
     </div>
   </template>
   
-  
-  
   <script lang="ts" setup>
   import { pokeChosen } from '@/store/store';
   import { pokeList } from '@/store/store';
@@ -36,9 +34,25 @@
   let pokemon = ref<any>([]); // Use ref() para tornar a variável "pokemon" reativa.
   let loading = ref(true);
 
-  const button_on = (true);
-  
+  function capitalizeFirstLetter(word: string): string {
+    if (word.length === 0) {
+        return word;
+    }
+
+    return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+  const nameInList = (name: string) => {
+    if(pokeList.value.includes(name)){
+      return false
+    }
+    return true
+    }
+
+
   onMounted(async () => {
+    
+    
     try {
       const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1292');
       const data = await response.json();
@@ -48,7 +62,10 @@
       console.error('Erro ao buscar dados:', error);
       loading.value = false;
     }
-  })
+
+  }
+
+  )
   </script>
   
   
@@ -69,6 +86,15 @@
     text-align: center;
     border-radius: 5px;
   }
+  .btn_poke_off{
+    width: 30px;
+    margin-left: 8%;
+    background-color: rgb(219, 219, 219);
+    text-align: center;
+    border-radius: 5px;
+    color: rgb(161, 160, 160);
+  }
+
 
   .btn_poke:hover{
     cursor: pointer;
