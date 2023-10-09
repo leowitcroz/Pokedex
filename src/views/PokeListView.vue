@@ -14,14 +14,14 @@
         </div>
         
         <div class="col-lg-10" style="background-color: rgb(247, 237, 225);">
-      <div class="poke_list" style="margin-top: 3%; margin-left: 3%; ">
-        <ul class="item-list" v-if="!loading && pokemon.length > 0">
-          <li class="list_itens" v-for="poke in pokemon" :key="poke.name"><div style="width: 120px;">{{ capitalizeFirstLetter(poke.name) }}</div> <div :class="nameInList(capitalizeFirstLetter(poke.name)) ? 'btn_poke' : 'btn_poke_off'" @click="console.log('click')">+</div></li>
-        </ul>
-        <div v-else-if="loading" >Loading...</div>
-        <div v-else>No data available.</div>
-      </div>
-    </div>
+          <div class="poke_list" style="margin-top: 3%; margin-left: 3%; ">
+            <ul class="item-list" v-if="!loading && pokemon.length > 0">
+              <li class="list_itens" v-for="poke in pokemon" :key="poke.name"><div style="width: 120px;">{{ capitalizeFirstLetter(poke.name) }}</div> <div :class="nameInList(capitalizeFirstLetter(poke.name)) ? 'btn_poke' : 'btn_poke_off'" @click="addPokemon(capitalizeFirstLetter(poke.name))">+</div></li>
+            </ul>
+              <div v-else-if="loading" >Loading...</div>
+              <div v-else>No data available.</div>
+          </div>
+       </div>
       </div>
     </div>
   </template>
@@ -38,7 +38,6 @@
     if (word.length === 0) {
         return word;
     }
-
     return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
@@ -48,6 +47,12 @@
     }
     return true
     }
+
+  let addPokemon =  (name: string) => {
+
+    pokeList.value.push(name)
+    alert(`${name} foi inserido na sua Pokedex`)
+}
 
 
   onMounted(async () => {
@@ -85,8 +90,10 @@
     background-color: white;
     text-align: center;
     border-radius: 5px;
+    max-height: 30px;
   }
   .btn_poke_off{
+    max-height: 30px;
     width: 30px;
     margin-left: 8%;
     background-color: rgb(219, 219, 219);
