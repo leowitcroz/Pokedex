@@ -16,7 +16,7 @@
         <div class="col-lg-10" style="background-color: rgb(247, 237, 225);">
           <div class="poke_list" style="margin-top: 3%; margin-left: 3%; ">
             <ul class="item-list" v-if="!loading && pokemon.length > 0">
-              <li class="list_itens" v-for="poke in pokemon" :key="poke.name"><div style="width: 120px;">{{ capitalizeFirstLetter(poke.name) }}</div> <div :class="nameInList(capitalizeFirstLetter(poke.name)) ? 'btn_poke' : 'btn_poke_off'" @click="addPokemon(capitalizeFirstLetter(poke.name))">+</div></li>
+              <li class="list_itens" v-for="poke in pokemon" :key="poke.name"><div style="width: 120px;">{{ capitalizeFirstLetter(poke.name) }}</div> <div :class="nameInList(capitalizeFirstLetter(poke.name)) ? 'btn_poke' : 'btn_poke_off'" @click=" nameInList(capitalizeFirstLetter(poke.name)) ? addPokemon(capitalizeFirstLetter(poke.name)) : ''">+</div></li>
             </ul>
               <div v-else-if="loading" >Loading...</div>
               <div v-else>No data available.</div>

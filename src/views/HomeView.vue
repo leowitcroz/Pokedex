@@ -49,7 +49,7 @@ function sleep(milliseconds: number) {
 
 let pokemon: string | any[] = []
 
-let pokeName = ref()
+let pokeName = ref('')
 
 let showText = ref(false)
 
@@ -57,7 +57,8 @@ let showFullText = ref(false)
 
 let addPokemon =  (name: string) => {
   for (let i = 0; i < pokemon.length; i++) {
-    if (pokemon[i].name == name.toLowerCase()) {
+    if(name != ''){
+      if (pokemon[i].name == name.toLowerCase()) {
       pokeChosen.value = pokemon[i].name[0].toUpperCase() + pokemon[i].name.substring(1)
         if(pokeList.value.length <= 19){
           pokeList.value.push(pokeChosen.value)
@@ -66,7 +67,13 @@ let addPokemon =  (name: string) => {
         }else{
           showFullText.value = true
         }
+      }
     }
+    else{
+      alert('O campo nome esta vazio')
+      return null
+    }
+  
   }
   return null
 }
